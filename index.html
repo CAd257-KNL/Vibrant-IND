@@ -1,71 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vibrant.Ind | Curated Top Picks</title>
+  <title>Vibrant.Ind | Premium Selections</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
   <style>
-    /* Smooth transition for hiding/showing elements */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #050505;
+      color: #e5e5e5;
+    }
+    
+    /* Dynamic styling for product cards */
     .product-card {
-      transition: all 0.3s ease;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      background: rgba(20, 20, 20, 0.6);
+      backdrop-filter: blur(10px);
     }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px -10px rgba(250, 204, 21, 0.15);
+      border-color: rgba(250, 204, 21, 0.4);
+    }
+    
+    /* Smooth hiding for filters */
     .hidden-card {
-      display: none !important;
+      opacity: 0;
+      transform: scale(0.95);
+      position: absolute;
+      visibility: hidden;
+      pointer-events: none;
     }
+
+   .metallic-text {
+  background: linear-gradient(to bottom, #ffffff 0%, #a3a3a3 50%, #404040 100%);
+  -webkit-background-clip: text;
+  background-clip: text; /* Added standard property */
+  -webkit-text-fill-color: transparent;
+}
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #050505; }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #555; }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="antialiased selection:bg-yellow-400 selection:text-black">
 
-  <header class="bg-black py-8 shadow-md">
-    <div class="container mx-auto px-4 flex flex-col items-center justify-center text-center">
-      
-      <div class="bg-yellow-400 p-4 rounded-full mb-4 shadow-lg border-2 border-yellow-500">
-        <svg class="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <nav class="fixed w-full top-0 z-50 mix-blend-difference p-6 flex justify-between items-start pointer-events-none">
+    <div class="text-xs tracking-widest font-semibold uppercase text-white space-y-1">
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
         </svg>
+        VIBRANT.IND
       </div>
-      
-      <h1 class="text-4xl font-extrabold text-yellow-400 tracking-wide">Vibrant.Ind</h1>
-      <p class="text-gray-300 mt-2">Explore the best products selected by me... 👇</p>
+      <div class="text-gray-500">Curated Goods</div>
     </div>
-  </header>
-
-  <nav class="bg-white sticky top-0 z-50 py-4 shadow-sm border-b border-gray-200">
-    <div class="container mx-auto px-4 flex flex-wrap justify-center gap-3" id="category-filters">
-      <button data-filter="all" class="filter-btn px-6 py-2 rounded-full bg-yellow-400 text-black font-semibold shadow-md transition">All</button>
-      <button data-filter="tech" class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium hover:bg-gray-300 transition">Tech</button>
-      <button data-filter="audio" class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium hover:bg-gray-300 transition">Audio</button>
-      <button data-filter="home" class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium hover:bg-gray-300 transition">Home</button>
-      <button data-filter="fitness" class="filter-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 font-medium hover:bg-gray-300 transition">Fitness</button>
+    
+    <div class="text-xs tracking-widest uppercase text-right text-gray-500 pointer-events-auto">
+      <a href="#shop" class="hover:text-white transition">Shop Directory ↓</a>
     </div>
   </nav>
 
-  <main class="container mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="product-grid">
+  <header class="relative w-full h-[90vh] flex flex-col items-center justify-center overflow-hidden border-b border-[#1a1a1a]">
     
-    <a href="https://amzn.to/4k1dXtV" target="_blank" data-category="tech" class="product-card bg-white rounded-xl shadow-xl hover:shadow-2xl transition transform hover:scale-105 p-6 text-center">
-      <img src="noisecolorfit.jpg" alt="Product 1" class="mx-auto mb-4 rounded-lg h-48 object-contain"/>
-      <h2 class="text-xl font-semibold text-yellow-400 mb-2">Noise Colorfit Pulse 3</h2>
-      <p class="text-sm text-gray-500"> Stay fit in style with Noise Pulse 3 : track your health, notifications, and more </p>
-      <button class="mt-4 px-6 py-2 bg-yellow-400 text-black rounded-lg hover:bg-yellow-500 transition">Buy Now</button>
-    </a>
+    <div class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none z-0">
+      <h1 class="text-[18vw] font-black text-[#111] whitespace-nowrap select-none leading-none tracking-tighter">
+        VIBRANT VIBRANT
+      </h1>
+    </div>
 
-    <a href="https://amzn.to/4m3MFEW" target="_blank" data-category="audio" class="product-card bg-white rounded-xl shadow-xl hover:shadow-2xl transition transform hover:scale-105 p-6 text-center">
-      <img src="boat393anc.jpg" alt="Product 2" class="mx-auto mb-4 rounded-lg h-48 object-contain"/>
-      <h2 class="text-xl font-semibold text-yellow-400 mb-2">bOAt Airdopes 393 ANC</h2>
-      <p class="text-sm text-gray-500"> Enjoy immersive sound with Boat Airdopes : perfect for work, travel & workouts.</p>
-      <button class="mt-4 px-6 py-2 bg-yellow-400 text-black rounded-lg hover:bg-yellow-500 transition">Buy Now</button>
-    </a>
+    <div class="z-10 relative flex flex-col items-center text-center px-4">
+      <h2 class="text-7xl md:text-[9rem] font-black metallic-text tracking-tighter mb-4 drop-shadow-2xl">
+        Vibrant.Ind
+      </h2>
+      <p class="text-lg md:text-xl text-gray-400 font-light max-w-md">
+        Explore the best products selected by me. <span class="text-yellow-400 animate-pulse inline-block">👇</span>
+      </p>
+    </div>
 
-    </main>
+    <div class="absolute bottom-6 left-6 text-xs tracking-widest uppercase text-gray-500">
+      <span class="block text-white">Status</span>
+      Updated Today <span class="text-green-500 ml-1">●</span>
+    </div>
+    <div class="absolute bottom-6 right-6 text-xs tracking-widest uppercase text-gray-500 text-right">
+      <span class="block text-white">Location</span>
+      Vijayawada, India
+    </div>
+  </header>
 
-  <footer class="bg-black py-8 border-t border-gray-800">
+  <div id="shop" class="bg-[#050505] min-h-screen relative z-20">
+    
+    <div class="sticky top-0 z-40 bg-[#050505]/90 backdrop-blur-md border-b border-[#1a1a1a] py-6">
+      <div class="container mx-auto px-4 flex flex-wrap justify-center gap-4" id="category-filters">
+        <button data-filter="all" class="filter-btn px-6 py-2 rounded-full border border-yellow-400 text-yellow-400 text-sm tracking-wide font-medium hover:bg-yellow-400 hover:text-black transition duration-300">All</button>
+        <button data-filter="tech" class="filter-btn px-6 py-2 rounded-full border border-gray-700 text-gray-400 text-sm tracking-wide font-medium hover:border-gray-300 hover:text-white transition duration-300">Tech</button>
+        <button data-filter="audio" class="filter-btn px-6 py-2 rounded-full border border-gray-700 text-gray-400 text-sm tracking-wide font-medium hover:border-gray-300 hover:text-white transition duration-300">Audio</button>
+        <button data-filter="home" class="filter-btn px-6 py-2 rounded-full border border-gray-700 text-gray-400 text-sm tracking-wide font-medium hover:border-gray-300 hover:text-white transition duration-300">Home</button>
+        <button data-filter="fitness" class="filter-btn px-6 py-2 rounded-full border border-gray-700 text-gray-400 text-sm tracking-wide font-medium hover:border-gray-300 hover:text-white transition duration-300">Fitness</button>
+      </div>
+    </div>
+
+    <main class="container mx-auto px-4 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="product-grid">
+      
+      <a href="https://amzn.to/4k1dXtV" target="_blank" data-category="tech" class="product-card rounded-2xl border border-[#1a1a1a] p-6 flex flex-col group relative overflow-hidden">
+        
+        <div class="h-56 w-full mb-6 bg-[#0a0a0a] rounded-xl flex items-center justify-center p-4 relative overflow-hidden">
+          <img src="noisecolorfit.jpg" alt="Product 1" class="max-h-full max-w-full object-contain transform group-hover:scale-110 transition duration-700 ease-out z-10"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-50 z-0"></div>
+        </div>
+        
+        <h2 class="text-xl font-semibold text-white mb-2 group-hover:text-yellow-400 transition-colors duration-300">Noise Colorfit Pulse 3</h2>
+        <p class="text-sm text-gray-500 font-light flex-grow leading-relaxed">Stay fit in style with Noise Pulse 3: track your health, notifications, and more.</p>
+        
+        <div class="mt-6 flex items-center justify-between">
+          <span class="text-xs uppercase tracking-widest text-gray-400 group-hover:text-white transition-colors">View Product</span>
+          <div class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center group-hover:border-yellow-400 group-hover:bg-yellow-400 group-hover:text-black transition-all duration-300">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </div>
+        </div>
+      </a>
+      </main>
+  </div>
+
+  <footer class="bg-[#020202] py-12 border-t border-[#1a1a1a]">
     <div class="container mx-auto px-4 text-center">
-      <p class="text-sm text-gray-500">
-        © 2025 Vibrant.Ind | Built with ❤️ <br>
-        <span class="text-xs mt-2 block">
-          <a href="https://affiliate-program.amazon.com" class="hover:text-yellow-400 transition" target="_blank">Amazon Affiliate Disclosure</a>: As an Amazon Associate, I earn from qualifying purchases.
-        </span>
+      <div class="text-3xl font-black text-white mb-6 tracking-tighter">Vibrant.Ind</div>
+      <p class="text-xs uppercase tracking-widest text-gray-600 mb-2">
+        © 2025 Vibrant.Ind | Built with ❤️
+      </p>
+      <p class="text-[10px] text-gray-700 max-w-md mx-auto uppercase tracking-wider">
+        <a href="https://affiliate-program.amazon.com" class="hover:text-gray-400 transition underline decoration-gray-800" target="_blank">Amazon Affiliate Disclosure</a>: As an Amazon Associate, I earn from qualifying purchases.
       </p>
     </div>
   </footer>
@@ -75,28 +144,35 @@
       const filterButtons = document.querySelectorAll('.filter-btn');
       const productCards = document.querySelectorAll('.product-card');
 
+      // Set initial active state for "All"
+      const allBtn = document.querySelector('[data-filter="all"]');
+      allBtn.classList.replace('border-gray-700', 'border-yellow-400');
+      allBtn.classList.replace('text-gray-400', 'text-yellow-400');
+
       filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-          // 1. Reset styling on all category buttons
+          // Reset styling
           filterButtons.forEach(btn => {
-            btn.classList.remove('bg-yellow-400', 'text-black', 'shadow-md');
-            btn.classList.add('bg-gray-200', 'text-gray-700');
+            btn.classList.remove('border-yellow-400', 'text-yellow-400', 'bg-yellow-400', 'text-black');
+            btn.classList.add('border-gray-700', 'text-gray-400');
           });
 
-          // 2. Apply active styling to the clicked button
-          button.classList.remove('bg-gray-200', 'text-gray-700');
-          button.classList.add('bg-yellow-400', 'text-black', 'shadow-md');
+          // Active styling
+          button.classList.remove('border-gray-700', 'text-gray-400');
+          button.classList.add('border-yellow-400', 'bg-yellow-400', 'text-black');
 
-          // 3. Get the selected category
           const category = button.getAttribute('data-filter');
 
-          // 4. Show or hide product cards based on category match
           productCards.forEach(card => {
             const cardCategory = card.getAttribute('data-category');
             if (category === 'all' || category === cardCategory) {
               card.classList.remove('hidden-card');
+              setTimeout(() => { card.style.position = 'relative'; }, 50);
             } else {
               card.classList.add('hidden-card');
+              setTimeout(() => { 
+                if (card.classList.contains('hidden-card')) card.style.position = 'absolute'; 
+              }, 500); // Wait for transition to finish
             }
           });
         });
